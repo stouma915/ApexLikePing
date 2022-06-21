@@ -1,0 +1,2 @@
+# ApexLikePing
+Apex LegendsのPing機能をMinecraftに追加するプラグイン
