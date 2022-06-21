@@ -1,0 +1,15 @@
+name: ApexLikePing
+main: net.stouma915.apexlikeping.ApexLikePing
+version: 1.0.0
+description: "A plugin that provides Apex Legends' Ping to Minecraft."
+api-version: 1.19
+author: stouma915
+
+permissions:
+  apexlikeping.*:
+    default: op
+    children:
+      apexlikeping.use: true
+  apexlikeping.use:
+    description: "Allow pinging."
+    default: true
