@@ -19,21 +19,19 @@ final class ApexLikePing extends JavaPlugin {
 
   // region startup tasks
 
-  private val startPlugin = for {
-    _ <- IO {
-      getLogger.info("ApexLikePing in enabled.")
-    }
-  }
+  private val startPlugin =
+    for {
+      _ <- IO(getLogger.info("ApexLikePing in enabled."))
+    } yield ()
 
   // endregion
 
   // region shutdown tasks
 
-  private val shutdownPlugin = for {
-    _ <- IO {
-      getLogger.info("ApexLikePing is disabled.")
-    }
-  }
+  private val shutdownPlugin =
+    for {
+      _ <- IO(getLogger.info("ApexLikePing is disabled."))
+    } yield ()
 
   // endregion
 
