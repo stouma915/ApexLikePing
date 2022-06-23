@@ -5,9 +5,9 @@ import org.bukkit.plugin.java.JavaPlugin
 
 object ApexLikePing {
 
-  private var instance: ApexLikePing = _
+  private var _instance: ApexLikePing = _
 
-  def getInstance: IO[ApexLikePing] = IO.pure(instance)
+  def instance: IO[ApexLikePing] = IO.pure(_instance)
 
 }
 
@@ -15,7 +15,7 @@ final class ApexLikePing extends JavaPlugin {
 
   import cats.effect.unsafe.implicits.global
 
-  ApexLikePing.instance = this
+  ApexLikePing._instance = this
 
   // region startup tasks
 
