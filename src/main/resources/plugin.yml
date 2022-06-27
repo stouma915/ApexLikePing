@@ -5,6 +5,13 @@ description: "A plugin that provides Apex Legends' Ping to Minecraft."
 api-version: 1.19
 author: stouma915
 
+commands:
+  ping:
+    description: "Send Ping."
+    usage: "/ping"
+    permission: apexlikeping.use
+    permission-message: "You don't have permission."
+
 permissions:
   apexlikeping.*:
     default: op
