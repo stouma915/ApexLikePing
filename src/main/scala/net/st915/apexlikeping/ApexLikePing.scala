@@ -5,9 +5,11 @@ import org.bukkit.plugin.java.JavaPlugin
 
 object ApexLikePing {
 
-  private var _instance: Option[ApexLikePing] = None
+  private var _instance: Either[Throwable, ApexLikePing] = Left(
+    new IllegalStateException("ApexLikePing is not yet ready.")
+  )
 
-  def instance: IO[Option[ApexLikePing]] = IO.pure(_instance)
+  def instance: IO[Either[Throwable, ApexLikePing]] = IO.pure(_instance)
 
 }
 
@@ -15,7 +17,7 @@ final class ApexLikePing extends JavaPlugin {
 
   import cats.effect.unsafe.implicits.global
 
-  ApexLikePing._instance = Some(this)
+  ApexLikePing._instance = Right(this)
 
   // region startup tasks
 
