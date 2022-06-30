@@ -12,10 +12,6 @@ object PingCommand {
     override def executionWith(context: CommandContext): IO[Unit] = IO {
     }
 
-    override def tabCandidatesFor(context: CommandContext): IO[List[String]] = IO {
-      Nil
-    }
-
-  }.asBukkitExecutor()
+  }.asBukkitTabExecutor()
 
 }
