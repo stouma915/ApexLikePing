@@ -1,23 +1,21 @@
 package net.st915.apexlikeping.command
 
-import org.bukkit.command.{Command, CommandSender, TabExecutor}
+import net.st915.contextualexecutor.{CommandContext, ContextualExecutor}
+import org.bukkit.command.TabExecutor
 
-final class PingCommand extends TabExecutor {
+object PingCommand {
 
-  import scala.jdk.CollectionConverters._
+  import cats.effect.unsafe.implicits.global
 
-  override def onCommand(
-    sender: CommandSender,
-    command: Command,
-    alias: String,
-    args: Array[String]
-  ): Boolean = true
+  val executor: TabExecutor = new ContextualExecutor {
 
-  override def onTabComplete(
-    sender: CommandSender,
-    command: Command,
-    alias: String,
-    args: Array[String]
-  ): java.util.List[String] = List().asJava
+    override def executionWith(context: CommandContext): IO[Unit] = IO {
+    }
+
+    override def tabCandidatesFor(context: CommandContext): IO[List[String]] = IO {
+      Nil
+    }
+
+  }.asBukkitExecutor()
 
 }
