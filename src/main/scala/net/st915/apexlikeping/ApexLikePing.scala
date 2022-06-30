@@ -1,6 +1,8 @@
 package net.st915.apexlikeping
 
 import cats.effect.IO
+import net.st915.apexlikeping.command.*
+import org.bukkit.command.TabExecutor
 import org.bukkit.plugin.java.JavaPlugin
 
 object ApexLikePing {
@@ -21,8 +23,18 @@ final class ApexLikePing extends JavaPlugin {
 
   // region startup tasks
 
+  private val registerCommands = IO {
+    Map(
+      "ping" -> PingCommand.executor
+    ).foreach {
+      case (name: String, executor: TabExecutor) =>
+        getCommand(name).setExecutor(executor)
+    }
+  }
+
   private val startPlugin =
     for {
+      _ <- registerCommands
       _ <- IO(getLogger.info("ApexLikePing in enabled."))
     } yield ()
 
