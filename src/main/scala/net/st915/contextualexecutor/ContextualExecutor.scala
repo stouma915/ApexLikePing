@@ -10,7 +10,7 @@ trait ContextualExecutor {
 
   def tabCandidatesFor(context: CommandContext): IO[List[String]] = IO.pure(Nil)
 
-  def asBukkitTabExecutor()(implicit runtime: IORuntime): TabExecutor = new TabExecutor {
+  def asBukkitTabExecutor(): TabExecutor = new TabExecutor {
 
     import scala.jdk.CollectionConverters.*
 
