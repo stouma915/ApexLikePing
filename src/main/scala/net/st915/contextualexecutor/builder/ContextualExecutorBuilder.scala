@@ -15,7 +15,7 @@ case class ContextualExecutorBuilder(
 
   def build(): ContextualExecutor = {
     if (commandLogic.isEmpty)
-      throw new IllegalStateException("Command Logic is not set yet.")
+      throw new IllegalStateException("Command Logic is not yet set.")
 
     new ContextualExecutor {
 
