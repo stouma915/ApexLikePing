@@ -1,5 +1,6 @@
 package net.st915.contextualexecutor.builder
 
+import cats.effect.IO
 import net.st915.contextualexecutor.{CommandContext, ContextualExecutor}
 
 case class ContextualExecutorBuilder(
