@@ -14,15 +14,25 @@ case class ContextualExecutorBuilder(
   def tabComplete(func: CommandContext => List[String]): ContextualExecutorBuilder =
     ContextualExecutorBuilder(commandLogic, Some(func))
 
-  def build(): ContextualExecutor =
+  def build(): ContextualExecutor = {
+    val executeLogic = commandLogic match {
+      Some(f) => f
+      None    => _ => ()
+    }
+    val tabLogic = tabCompleteLogic match {
+      Some(f) => f
+      None    => _ => Nil
+    }
+
     new ContextualExecutor {
 
       override def executionWith(context: CommandContext): IO[Unit] =
-        IO.unit
+        IO(executeLogic(context))
 
       override def tabCandidatesFor(context: CommandContext): IO[List[String]] =
-        IO.pure(Nil)
+        IO(tabLogic(context))
 
     }
+  }
 
 }
