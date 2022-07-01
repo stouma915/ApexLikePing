@@ -13,24 +13,15 @@ case class ContextualExecutorBuilder(
   def tabComplete(func: CommandContext => List[String]): ContextualExecutorBuilder =
     ContextualExecutorBuilder(commandLogic, Some(func))
 
-  def build(): ContextualExecutor = {
-    if (commandLogic.isEmpty)
-      throw new IllegalStateException("Command Logic is not yet set.")
-
+  def build(): ContextualExecutor =
     new ContextualExecutor {
 
       override def executionWith(context: CommandContext): IO[Unit] =
-        IO.pure(commandLogic.get(context))
+        IO.unit
 
       override def tabCandidatesFor(context: CommandContext): IO[List[String]] =
-        IO.pure {
-          if (tabCompleteLogic.isEmpty)
-            Nil
-          else
-            tabCompleteLogic.get(context)
-        }
+        IO.pure(Nil)
 
     }
-  }
 
 }
