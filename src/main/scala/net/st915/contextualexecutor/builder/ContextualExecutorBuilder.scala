@@ -30,7 +30,7 @@ case class ContextualExecutorBuilder(
       override def executionWith(context: CommandContext): IO[Unit] =
         IO.pure(commandLogic(context))
 
-      override def tabCandidatesFor(context: CommandContext): IO[List[String]] =
+      override def tabCompleteWith(context: CommandContext): IO[List[String]] =
         IO.pure(tabCompleteLogic(context))
 
     }
