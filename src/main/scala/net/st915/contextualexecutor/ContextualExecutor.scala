@@ -8,7 +8,7 @@ trait ContextualExecutor {
 
   def executionWith(context: CommandContext): IO[Unit]
 
-  def tabCompleteWith(context: CommandContext): IO[List[String]] = IO.pure(Nil)
+  def tabCompleteWith(context: CommandContext): IO[List[String]]
 
   def asBukkitTabExecutor()(implicit runtime: IORuntime): TabExecutor = new TabExecutor {
 
